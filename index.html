@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLN Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+  <header class="flex items-center justify-between bg-[#002366] text-white p-4">
+    <div class="flex items-center gap-4">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Logo_PLN.svg" class="h-10" alt="PLN Logo" />
+      <h1 class="text-xl font-bold">PLN Dashboard</h1>
+    </div>
+    <div id="user-info" class="hidden md:flex items-center gap-2">
+      <span id="user-name"></span>
+      <button onclick="logout()" class="bg-red-500 px-3 py-1 rounded">Logout</button>
+    </div>
+  </header>
+
+  <main class="p-4">
+    <!-- Login Button -->
+    <div id="login-section" class="flex justify-center items-center h-96">
+      <div id="g_id_onload"
+        data-client_id="1B5VNeLhYl4eaXxFtjZDgQxBTxaAJs4WIw5N8TWXtSGM"
+        data-callback="handleCredentialResponse">
+      </div>
+      <div class="g_id_signin" data-type="standard"></div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="hidden">
+      <div class="grid md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-blue-100 p-4 rounded-xl shadow">
+          <h2 class="text-sm text-gray-600">Total Transaksi Bulan Ini</h2>
+          <p id="total-transaksi" class="text-2xl font-bold">...</p>
+        </div>
+        <div class="bg-blue-100 p-4 rounded-xl shadow">
+          <h2 class="text-sm text-gray-600">Top Sales</h2>
+          <ul id="top-sales" class="list-disc ml-5 text-sm"></ul>
+        </div>
+        <div class="bg-blue-100 p-4 rounded-xl shadow">
+          <h2 class="text-sm text-gray-600">Poin Anda</h2>
+          <p id="user-poin" class="text-2xl font-bold text-green-700">...</p>
+        </div>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl shadow mb-6">
+        <h2 class="text-lg font-semibold mb-2">Grafik Transaksi Mingguan</h2>
+        <canvas id="transaksiChart"></canvas>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl shadow">
+        <h2 class="text-lg font-semibold mb-4">Gallery Reward</h2>
+        <div id="reward-gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Panggil app.js di akhir body -->
+  <script src="app.js"></script>
+</body>
+</html>
